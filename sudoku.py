@@ -2,6 +2,7 @@ from discord_webhook import DiscordEmbed, DiscordWebhook  # Connect to discord
 from environs import Env  # For environment variables
 from selenium import webdriver  # Browser prereq
 from selenium.common.exceptions import NoSuchElementException
+import sudoku_solve
 
 # Setting up environment variables
 env = Env()
@@ -16,7 +17,7 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 
 
-def embed_to_discord():
+def embed_to_discord(image_as_binary):
     # Webhooks to send to
     webhook = DiscordWebhook(url=env.list("WEBHOOKS"))
 
@@ -27,7 +28,7 @@ def embed_to_discord():
     with open("yo.png", "rb") as f:
         webhook.add_file(file=f.read(), filename='yo.png')
 
-    embed.set_image(url='attachment://yo.png')
+    embed.set_image(url=image_as_binary)
 
     # add embed object to webhook(s)
     webhook.add_embed(embed)
@@ -55,7 +56,7 @@ def take_screenshot():
         '//*[@id="js-hook-pz-moment__game"]/div[1]')  # this is just to crop it properly
 
     browser.execute_script("arguments[0].scrollIntoView();", top_toolbar)
-    full_grid.screenshot('yo.png')
+    return full_grid.screenshot_as_png
 
 
 browser = webdriver.Chrome(executable_path=env(
@@ -64,7 +65,9 @@ browser = webdriver.Chrome(executable_path=env(
 browser.get("https://www.nytimes.com/puzzles/sudoku/hard")
 
 
-get_import_code()
-embed_to_discord('yo.png')
+sudoku_solve.solveSudoku(sudoku_solve.stateConverter(get_import_code())) #find the code, convert it, and then solve the grid
+embed_to_discord(take_screenshot()) #take a screenshot of the grid partially solved
+
+
 
 browser.quit()

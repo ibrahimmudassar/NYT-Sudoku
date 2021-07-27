@@ -1,2 +1,3 @@
 selenium
 environs
+discord_webhook
