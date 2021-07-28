@@ -11,10 +11,9 @@ env.read_env()  # read .env file, if it exists
 
 # Create new Instance of Chrome
 chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = env("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
 
 
 def embed_to_discord(image_as_binary):
@@ -64,10 +63,9 @@ browser = webdriver.Chrome(executable_path=env(
 
 browser.get("https://www.nytimes.com/puzzles/sudoku/hard")
 
-
-sudoku_solve.solveSudoku(sudoku_solve.stateConverter(get_import_code())) #find the code, convert it, and then solve the grid
-embed_to_discord(take_screenshot()) #take a screenshot of the grid partially solved
-
+print(sudoku_solve.solveWrapper(sudoku_solve.sudoku_string_to_list(
+    get_import_code())))  # find the code, convert it, and then solve the grid
+# embed_to_discord(take_screenshot()) #take a screenshot of the grid partially solved
 
 
 browser.quit()
