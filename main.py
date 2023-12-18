@@ -95,7 +95,8 @@ def embed_to_discord(nyt_link):
         url='https://cdn-1.webcatalog.io/catalog/nytimes-sudoku/nytimes-sudoku-icon-filled-256.png?v=1675594774672')
 
     # set footer
-    embed.set_footer(text='The New York Times Games')
+    embed.set_footer(text='Made By Ibrahim Mudassar',
+                     icon_url='https://avatars.githubusercontent.com/u/22484328?v=4')
 
     # add embed object to webhook(s)
     # Webhooks to send to
