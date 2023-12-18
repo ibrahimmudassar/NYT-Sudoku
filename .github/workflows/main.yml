@@ -33,7 +33,7 @@ jobs:
       - name: execute py script # run main.py
         env:
           WEBHOOKS: ${{ secrets.WEBHOOKS }}
-        run: python the_morning.py
+        run: python main.py
 
       - name: Keepalive Workflow
         uses: gautamkrishnar/keepalive-workflow@1.1.0
