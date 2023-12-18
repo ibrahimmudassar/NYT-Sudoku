@@ -2,7 +2,8 @@
 
 This app takes the sudoku from The New York Times everyday and sends it to me through Discord. I also did an analysis of ~4k sudokus from years past to understand how they are rated.
 
-<img width="417" alt="image" src="https://github.com/ibrahimmudassar/NYT-Sudoku/assets/22484328/dfaad856-8ccc-4345-8c67-b0f05358909c">
+<img width="408" alt="image" src="https://github.com/ibrahimmudassar/NYT-Sudoku/assets/22484328/3b70b14f-8e1b-427b-81ce-8cb81a2cddc7">
+
 
 ## The Daily
 Scrapes NYT to send me a photo of the sudoku with candidates with the HoDoKu and SukakuExplainer ratings.
