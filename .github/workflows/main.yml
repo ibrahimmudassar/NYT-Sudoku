@@ -1,8 +1,8 @@
 name: run the_morning.py
 
-on: [push]
-#   schedule:
-#     - cron: "30 13 * * *"
+on:
+  schedule:
+    - cron: "30 13 * * *"
 
 jobs:
   build:
