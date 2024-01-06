@@ -53,7 +53,7 @@ for i, j in [easy, medium, hard]:
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch()
         page = browser.new_page()
-        page.goto(f'https://sudoku.coach/en/solver/{j}')
+        page.goto(f'https://sudoku.coach/en/play/{j}')
 
         page.wait_for_selector("div:has-text('HoDoKu:')")
         soup = BeautifulSoup(page.content(), 'html.parser')
