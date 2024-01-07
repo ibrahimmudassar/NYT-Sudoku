@@ -53,7 +53,7 @@ for i, j in [easy, medium, hard]:
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch()
         page = browser.new_page()
-        page.goto(f'https://sudoku.coach/en/play/{j}')
+        page.goto(f'https://sudoku.coach/en/solver/{j}')
 
         page.wait_for_selector("div:has-text('HoDoKu:')")
         soup = BeautifulSoup(page.content(), 'html.parser')
@@ -79,7 +79,7 @@ def embed_to_discord(nyt_link):
     embed = DiscordEmbed(title='NYT Sudoku',
                          description='Analysis of NYT Sudoku Today')
 
-    sudokku_coach_hard = "https://sudoku.coach/en/solver/" + ''.join([str(i)
+    sudokku_coach_hard = "https://sudoku.coach/en/play/" + ''.join([str(i)
                                                                       for i in gameData['hard']['puzzle_data']['puzzle']])
     embed.add_embed_field(
         name="Ways to Play", value=f"[Play on NYT]({nyt_link})\n[Play on SudokuCoach]({sudokku_coach_hard})", inline=False)
