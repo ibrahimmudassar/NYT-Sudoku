@@ -126,7 +126,7 @@ def embed_to_discord(nyt_link):
     for webhook_url in env.list("WEBHOOKS"):
         webhook = DiscordWebhook(url=webhook_url)
 
-        with open("sudoku.png", "rb") as f:
+        with open("sudoku_hard.png", "rb") as f:
             webhook.add_file(file=f.read(), filename="sudoku.png")
 
         webhook.add_embed(embed)
