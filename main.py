@@ -151,7 +151,7 @@ for d in df.to_dict(orient="records"):
         .text(f"{date} NYT Sudoku {d['difficulty'].title()} Analysis\n")
         .text("\nDifficulty Score")
         .text(f"\nHoDoKu: {d['HoDoKu']}")
-        .text(f"\nSudokuExplainer: {d['SE']}\n")
+        .text(f"\nSukakuExplainer: {d['SE']}\n")
         .link(
             "\nNYT Website", f"https://www.nytimes.com/puzzles/sudoku/{d['difficulty']}"
         )
