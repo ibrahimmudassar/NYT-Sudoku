@@ -1,8 +1,9 @@
 name: run the_morning.py
 
 on:
-  schedule:
-    - cron: "30 13 * * *"
+  [push]
+  # schedule:
+  #   - cron: "30 11 * * *"
 
 jobs:
   build:
@@ -33,6 +34,8 @@ jobs:
       - name: execute py script # run main.py
         env:
           WEBHOOKS: ${{ secrets.WEBHOOKS }}
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
         run: python main.py
 
       - name: Keepalive Workflow
