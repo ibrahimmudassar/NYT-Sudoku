@@ -45,6 +45,7 @@ with sync_playwright() as playwright:
 
         # Show candidates
         page.locator(".purr-blocker-card__button").click(button="left")
+        page.locator(".fam-close-x").click(button="left")
         page.locator(".su-keyboard__checkbox").click(button="left")
 
         # Take a screenshot of a specific element
@@ -85,7 +86,6 @@ for i, j in [easy, medium, hard]:
     temp["difficulty"] = i
 
     final_list.append(temp)
-
 
 def embed_to_discord(nyt_link):
 
