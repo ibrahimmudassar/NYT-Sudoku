@@ -167,4 +167,3 @@ for d in df.to_dict(orient="records"):
         image=img_data,
         image_alt=f"{d['difficulty'].title()} sudoku screenshot with candidates",
     )
-    )
