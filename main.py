@@ -37,7 +37,7 @@ final_list = []
 # get an image of the hard sudoku of the day
 with sync_playwright() as playwright:
     for i, j in [easy, medium, hard]:
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch()
         page = browser.new_page()
         page.set_viewport_size({"width": 1920, "height": 1080})
         page.goto(f"https://www.nytimes.com/puzzles/sudoku/{i}")
