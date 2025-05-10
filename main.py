@@ -1,5 +1,4 @@
 import json
-from datetime import datetime
 
 import pandas as pd
 import requests
@@ -38,14 +37,16 @@ final_list = []
 # get an image of the hard sudoku of the day
 with sync_playwright() as playwright:
     for i, j in [easy, medium, hard]:
-        browser = playwright.chromium.launch()
+        browser = playwright.chromium.launch(headless=False)
         page = browser.new_page()
         page.set_viewport_size({"width": 1920, "height": 1080})
         page.goto(f"https://www.nytimes.com/puzzles/sudoku/{i}")
 
         # Show candidates
-        page.locator(".purr-blocker-card__button").click(button="left")
-        page.locator(".fam-close-x").click(button="left")
+        page.locator(
+            "#portal-modal-system > div > div > div.xwd__modal--body.dark-mode-body.animate-opening.animate-opening-slide-up > article > button"
+        ).click(button="left")
+        # page.locator(".fam-close-x").click(button="left")
         page.locator(".su-keyboard__checkbox").click(button="left")
 
         # Take a screenshot of a specific element
@@ -86,6 +87,7 @@ for i, j in [easy, medium, hard]:
     temp["difficulty"] = i
 
     final_list.append(temp)
+
 
 def embed_to_discord(nyt_link):
 
@@ -145,7 +147,7 @@ profile = client.login(str(env("BSKY_HANDLE")), str(env("BSKY_PASSWORD")))
 # print("Welcome,", profile.display_name)
 # print(df.to_string(max_colwidth=20))
 for d in df.to_dict(orient="records"):
-    date = d["print_date"].strftime("%-m/%-d/%Y")
+    date = d["print_date"].strftime("%m/%d/%Y")
     text = (
         client_utils.TextBuilder()
         .text(f"{date} NYT Sudoku {d['difficulty'].title()} Analysis\n")
@@ -164,4 +166,5 @@ for d in df.to_dict(orient="records"):
         text,
         image=img_data,
         image_alt=f"{d['difficulty'].title()} sudoku screenshot with candidates",
+    )
     )
